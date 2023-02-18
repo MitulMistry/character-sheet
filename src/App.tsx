@@ -2,7 +2,7 @@ import React from 'react';
 // import logo from './logo.svg';
 // import { Counter } from './features/counter/Counter';
 import { Routes, Route } from 'react-router-dom';
-import { Container } from 'reactstrap';
+import { Container } from 'react-bootstrap';
 import Layout from './components/Layout/Layout';
 import Home from './components/Home/Home';
 import CharacterForm from './components/CharacterForm/CharacterForm';
