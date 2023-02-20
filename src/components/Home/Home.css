@@ -1,0 +1,22 @@
+.home {
+  margin-top: 1rem;
+}
+
+.home h1 {
+  font-weight: 700;
+  font-size: 1.7rem;
+  margin-bottom: 2rem;
+}
+
+.home p {
+  font-size: 1.1rem;
+  margin-bottom: .5rem;
+}
+
+.home .buttons {
+  margin-top: 1rem;
+}
+
+.home .buttons .btn {
+  margin: 1rem;
+}
