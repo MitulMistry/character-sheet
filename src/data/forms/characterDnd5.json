@@ -1,0 +1,64 @@
+{
+  "races": [
+    "Dragonborn",
+    "Dwarf",
+    "Elf",
+    "Gnome",
+    "Half-Elf",
+    "Halfling",
+    "Half-Orc",
+    "Human",    
+    "Tiefling"
+  ],
+  "genders": [
+    "Male",
+    "Female",
+    "Other"
+  ],
+  "classes": [
+    "Barbarian",
+    "Bard",
+    "Clerica",
+    "Druid",
+    "Fighter",
+    "Monk",
+    "Paladin",
+    "Ranger",
+    "Rogue",
+    "Sorcerer",
+    "Warlock",
+    "Wizard"
+  ],
+  "maxLevel": 20,
+  "backgrounds": [
+    "Acolyte",
+    "Charlatan",
+    "Criminal",
+    "Entertainer",
+    "Folk Hero",
+    "Gladiator",
+    "Guild Artisan",
+    "Guild Merchant",
+    "Hermit",
+    "Knight",
+    "Noble",
+    "Outlander",
+    "Pirate",
+    "Sage",
+    "Sailor",
+    "Soldier",
+    "Spy",
+    "Urchin"
+  ],
+  "alignments": [
+    "Lawful Good",
+    "Neutral Good",
+    "Chaotic Good",
+    "Lawful Neutral",
+    "True Neutral",
+    "Chaotic Neutral",
+    "Lawful Evil",
+    "Neutral Evil",
+    "Chaotic Evil"
+  ]
+}
