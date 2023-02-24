@@ -23,12 +23,12 @@ function CharacterForm() {
 
   const [characterName, setCharacterName] = useState('');
   const [playerName, setPlayerName] = useState('');
-  const [race, setRace] = useState('');
-  const [gender, setGender] = useState('');
-  const [charClass, setCharClass] = useState('');
-  const [level, setLevel] = useState(0);
-  const [background, setBackground] = useState('');
-  const [alignment, setAlignment] = useState('');
+  const [race, setRace] = useState('None');
+  const [gender, setGender] = useState('None');
+  const [charClass, setCharClass] = useState('None');
+  const [level, setLevel] = useState(1);
+  const [background, setBackground] = useState('None');
+  const [alignment, setAlignment] = useState('None');
   const [currentHitPoints, setCurrentHitPoints] = useState(0);
   const [maxHitPoints, setMaxHitPoints] = useState(0);
   const [armorClass, setArmorClass] = useState(0);
@@ -86,6 +86,7 @@ function CharacterForm() {
                   value={ race }
                   onChange={ event => setRace(event.target.value) }
                 >
+                  <option key={`race-race`}>None</option>
                   {formData.races.map((race, idx) => (<option key={`race-${idx}`}>{race}</option>))}                  
                 </Form.Select>
               </Form.Group>
@@ -98,6 +99,7 @@ function CharacterForm() {
                   value={ gender }
                   onChange={ event => setGender(event.target.value) }
                 >
+                  <option key={`race-gender`}>None</option>
                   {formData.genders.map((gender, idx) => (<option key={`gender-${idx}`}>{gender}</option>))}                  
                 </Form.Select>
               </Form.Group>
@@ -112,6 +114,7 @@ function CharacterForm() {
                   value={ charClass }
                   onChange={ event => setCharClass(event.target.value) }
                 >
+                  <option key={`race-charClass`}>None</option>
                   {formData.charClasses.map((charClass, idx) => (<option key={`charClass-${idx}`}>{charClass}</option>))}                  
                 </Form.Select>
               </Form.Group>
@@ -141,6 +144,7 @@ function CharacterForm() {
                   value={ background }
                   onChange={ event => setBackground(event.target.value) }
                 >
+                  <option key={`background-default`}>None</option>
                   {formData.backgrounds.map((background, idx) => (<option key={`background-${idx}`}>{background}</option>))}                  
                 </Form.Select>
               </Form.Group>
@@ -153,6 +157,7 @@ function CharacterForm() {
                   value={ alignment }
                   onChange={ event => setAlignment(event.target.value) }
                 >
+                  <option key={`alignment-default`}>None</option>
                   {formData.alignments.map((alignment, idx) => (<option key={`alignment-${idx}`}>{alignment}</option>))}                  
                 </Form.Select>
               </Form.Group>
