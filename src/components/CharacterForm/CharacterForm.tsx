@@ -44,7 +44,7 @@ function CharacterForm() {
               <Form.Group className="mb-3" controlId="race">
                 <Form.Label>Race</Form.Label>
                 <Form.Select>
-                  {formData.races.map(race => (<option key={race}>{race}</option>))}                  
+                  {formData.races.map((race, idx) => (<option key={`race-${idx}`}>{race}</option>))}                  
                 </Form.Select>
               </Form.Group>
             </Col>
@@ -53,7 +53,7 @@ function CharacterForm() {
               <Form.Group className="mb-3" controlId="gender">
                 <Form.Label>Gender</Form.Label>
                 <Form.Select>
-                  {formData.genders.map(gender => (<option key={gender}>{gender}</option>))}                  
+                  {formData.genders.map((gender, idx) => (<option key={`gender-${idx}`}>{gender}</option>))}                  
                 </Form.Select>
               </Form.Group>
             </Col>
@@ -64,7 +64,7 @@ function CharacterForm() {
               <Form.Group className="mb-3" controlId="class">
                 <Form.Label>Class</Form.Label>
                 <Form.Select>
-                  {formData.classes.map(charClass => (<option key={charClass}>{charClass}</option>))}                  
+                  {formData.classes.map((charClass, idx) => (<option key={`charClass-${idx}`}>{charClass}</option>))}                  
                 </Form.Select>
               </Form.Group>
             </Col>
@@ -73,8 +73,8 @@ function CharacterForm() {
               <Form.Group className="mb-3" controlId="playerName">
                 <Form.Label>Level</Form.Label>
                 <Form.Select>
-                  { [...Array(formData.maxLevel)].map((val, i) => (
-                      <option key={"lvl" + (i + 1)}>{i + 1}</option>
+                  { [...Array(formData.maxLevel)].map((val, idx) => (
+                      <option key={"lvl-" + (idx + 1)}>{idx + 1}</option>
                     ))
                   }
                 </Form.Select>
@@ -87,7 +87,7 @@ function CharacterForm() {
               <Form.Group className="mb-3" controlId="background">
                 <Form.Label>Background</Form.Label>
                 <Form.Select>
-                  {formData.backgrounds.map(background => (<option key={background}>{background}</option>))}                  
+                  {formData.backgrounds.map((background, idx) => (<option key={`background-${idx}`}>{background}</option>))}                  
                 </Form.Select>
               </Form.Group>
             </Col>
@@ -96,7 +96,7 @@ function CharacterForm() {
               <Form.Group className="mb-3" controlId="alignment">
                 <Form.Label>Alignment</Form.Label>
                 <Form.Select>
-                  {formData.alignments.map(alignment => (<option key={alignment}>{alignment}</option>))}                  
+                  {formData.alignments.map((alignment, idx) => (<option key={`alignment-${idx}`}>{alignment}</option>))}                  
                 </Form.Select>
               </Form.Group>
             </Col>
