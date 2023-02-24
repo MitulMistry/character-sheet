@@ -7,7 +7,7 @@ export interface CharacterFormState {
   data: {
     races: string[],
     genders: string[],
-    classes: string[],
+    charClasses: string[],
     maxLevel: number,
     backgrounds: string[],
     alignments: string[]
@@ -18,7 +18,7 @@ const initialState: CharacterFormState = {
   data: {
     races: [],
     genders: [],
-    classes: [],
+    charClasses: [],
     maxLevel: 0,
     backgrounds: [],
     alignments: []

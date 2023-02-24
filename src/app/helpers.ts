@@ -1,0 +1,1 @@
+export const strToNum = (str: string) => Number(str);
