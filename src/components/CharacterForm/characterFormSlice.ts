@@ -1,27 +1,26 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from '../../app/store';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '../../app/store';
 import dnd5Data from '../../data/forms/characterDnd5.json';
+import { rulesets } from '../../data/constants';
 
 export interface CharacterFormState {
   data: object;
-  status: 'idle' | 'loading' | 'failed';
 }
 
 const initialState: CharacterFormState = {
   data: {},
-  status: 'idle',
 };
 
 export const characterFormSlice = createSlice({
   name: 'characterForm',
   initialState,
   reducers: {
-    reset: (state) => {
+    resetCharFormData: (state) => {
       state = initialState;
     },
-    load: (state, action: PayloadAction<string>) => {
+    loadCharFormData: (state, action: PayloadAction<string>) => {
       switch (action.payload) {
-        case 'dnd5':
+        case rulesets.dnd5:
           state.data = dnd5Data;
           break;
         default:
@@ -31,6 +30,10 @@ export const characterFormSlice = createSlice({
   }
 });
 
-export const selectData = (state: RootState) => state.characterForm.data;
+// Actions to initiate changes to store
+export const { resetCharFormData, loadCharFormData } = characterFormSlice.actions;
+
+// Selector to access data in store
+export const selectCharFormData = (state: RootState) => state.characterForm.data;
 
 export default characterFormSlice.reducer;

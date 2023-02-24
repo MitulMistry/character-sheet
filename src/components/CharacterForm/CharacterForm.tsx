@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { loadCharFormData, selectCharFormData } from './characterFormSlice';
+import { rulesets } from '../../data/constants';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -9,6 +13,13 @@ import Form from 'react-bootstrap/Form';
 import './CharacterForm.css';
 
 function CharacterForm() {
+  const formData = useAppSelector(selectCharFormData);
+  const dispatch = useAppDispatch();
+
+  // With an empty array as argument, will dispatch to Redux store
+  // only once upon component loading.
+  useEffect(() => { dispatch(loadCharFormData(rulesets.dnd5)) }, []);
+
   return (
     <Container>
       <Form className="characterForm">
