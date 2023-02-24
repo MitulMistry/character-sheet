@@ -7,7 +7,7 @@
     "Half-Elf",
     "Halfling",
     "Half-Orc",
-    "Human",    
+    "Human",
     "Tiefling"
   ],
   "genders": [
@@ -18,7 +18,7 @@
   "classes": [
     "Barbarian",
     "Bard",
-    "Clerica",
+    "Cleric",
     "Druid",
     "Fighter",
     "Monk",
@@ -48,7 +48,8 @@
     "Sailor",
     "Soldier",
     "Spy",
-    "Urchin"
+    "Urchin",
+    "Other"
   ],
   "alignments": [
     "Lawful Good",

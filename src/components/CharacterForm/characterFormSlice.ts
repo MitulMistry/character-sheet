@@ -4,11 +4,25 @@ import dnd5Data from '../../data/forms/characterDnd5.json';
 import { rulesets } from '../../data/constants';
 
 export interface CharacterFormState {
-  data: object;
+  data: {
+    races: string[],
+    genders: string[],
+    classes: string[],
+    maxLevel: number,
+    backgrounds: string[],
+    alignments: string[]
+  };
 }
 
 const initialState: CharacterFormState = {
-  data: {},
+  data: {
+    races: [],
+    genders: [],
+    classes: [],
+    maxLevel: 0,
+    backgrounds: [],
+    alignments: []
+  },
 };
 
 export const characterFormSlice = createSlice({

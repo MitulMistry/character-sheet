@@ -43,14 +43,18 @@ function CharacterForm() {
             <Col xs={12} md={6}>
               <Form.Group className="mb-3" controlId="race">
                 <Form.Label>Race</Form.Label>
-                <Form.Control type="text" />
+                <Form.Select>
+                  {formData.races.map(race => (<option key={race}>{race}</option>))}                  
+                </Form.Select>
               </Form.Group>
             </Col>
 
             <Col xs={12} md={6}>
               <Form.Group className="mb-3" controlId="gender">
                 <Form.Label>Gender</Form.Label>
-                <Form.Control type="text" />
+                <Form.Select>
+                  {formData.genders.map(gender => (<option key={gender}>{gender}</option>))}                  
+                </Form.Select>
               </Form.Group>
             </Col>
           </Row>
@@ -59,14 +63,21 @@ function CharacterForm() {
             <Col xs={12} md={6}>
               <Form.Group className="mb-3" controlId="class">
                 <Form.Label>Class</Form.Label>
-                <Form.Control type="text" />
+                <Form.Select>
+                  {formData.classes.map(charClass => (<option key={charClass}>{charClass}</option>))}                  
+                </Form.Select>
               </Form.Group>
             </Col>
 
             <Col xs={12} md={6}>
               <Form.Group className="mb-3" controlId="playerName">
                 <Form.Label>Level</Form.Label>
-                <Form.Control type="text" />
+                <Form.Select>
+                  { [...Array(formData.maxLevel)].map((val, i) => (
+                      <option key={"lvl" + (i + 1)}>{i + 1}</option>
+                    ))
+                  }
+                </Form.Select>
               </Form.Group>
             </Col>
           </Row>
@@ -75,14 +86,18 @@ function CharacterForm() {
             <Col xs={12} md={6}>
               <Form.Group className="mb-3" controlId="background">
                 <Form.Label>Background</Form.Label>
-                <Form.Control type="text" />
+                <Form.Select>
+                  {formData.backgrounds.map(background => (<option key={background}>{background}</option>))}                  
+                </Form.Select>
               </Form.Group>
             </Col>
 
             <Col xs={12} md={6}>
               <Form.Group className="mb-3" controlId="alignment">
                 <Form.Label>Alignment</Form.Label>
-                <Form.Control type="text" />
+                <Form.Select>
+                  {formData.alignments.map(alignment => (<option key={alignment}>{alignment}</option>))}                  
+                </Form.Select>
               </Form.Group>
             </Col>
           </Row>
