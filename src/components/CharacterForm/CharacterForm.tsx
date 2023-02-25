@@ -5,6 +5,12 @@ import { loadCharFormData, selectCharFormData } from './characterFormSlice';
 import { rulesets } from '../../data/constants';
 import { strToNum } from '../../app/helpers';
 
+import {
+  createCharacter,
+  updateCharacter,
+  deleteCharacter
+} from '../../features/characters/charactersSlice';
+
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -21,35 +27,43 @@ function CharacterForm() {
   // only once upon component loading.
   useEffect(() => { dispatch(loadCharFormData(rulesets.dnd5)) }, []);
 
-  const [characterName, setCharacterName] = useState('');
-  const [playerName, setPlayerName] = useState('');
-  const [race, setRace] = useState('None');
-  const [gender, setGender] = useState('None');
-  const [charClass, setCharClass] = useState('None');
-  const [level, setLevel] = useState(1);
-  const [background, setBackground] = useState('None');
-  const [alignment, setAlignment] = useState('None');
-  const [currentHitPoints, setCurrentHitPoints] = useState(0);
-  const [maxHitPoints, setMaxHitPoints] = useState(0);
-  const [armorClass, setArmorClass] = useState(0);
-  const [initiative, setInitiative] = useState(0);
-  const [speed, setSpeed] = useState(0);
-  const [strength, setStrength] = useState(0);
-  const [dexterity, setDexterity] = useState(0);
-  const [constitution, setConstitution] = useState(0);
-  const [intelligence, setIntelligence] = useState(0);
-  const [wisdom, setWisdom] = useState(0);
-  const [charisma, setCharisma] = useState(0);
-  const [attacksSpellcasting, setAttacksSpellcasting] = useState('');
-  const [equipment, setEquipment] = useState('');
-  const [savingThrows, setSavingThrows] = useState('');
-  const [skills, setSkills] = useState('');
-  const [personalityTraits, setPersonalityTraits] = useState('');
-  const [ideals, setIdeals] = useState('');
-  const [bonds, setBonds] = useState('');
-  const [flaws, setFlaws] = useState('');
-  const [biography, setBiography] = useState('');
-  const [other, setOther] = useState('');
+  const [form, setForm] = useState({
+    characterName: '',
+    playerName: '',
+    race: 'None',
+    gender: 'None',
+    charClass: 'None',
+    level: 1,
+    background: 'None',
+    alignment: 'None',
+    currentHitPoints: 0,
+    maxHitPoints: 0,
+    armorClass: 0,
+    initiative: 0,
+    speed: 0,
+    strength: 0,
+    dexterity: 0,
+    constitution: 0,
+    intelligence: 0,
+    wisdom: 0,
+    charisma: 0,
+    attacksSpellcasting: '',
+    equipment: '',
+    savingThrows: '',
+    skills: '',
+    personalityTraits: '',
+    ideals: '',
+    bonds: '',
+    flaws: '',
+    biography: '',
+    other: ''
+  });
+
+  // const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   const character = Object.assign({}, state);
+  //   dispatch(createCharacter());
+  // }
 
   return (
     <Container>
@@ -60,8 +74,13 @@ function CharacterForm() {
                 <Form.Label>Character Name</Form.Label>
                 <Form.Control
                   type="text"
-                  value={ characterName }
-                  onChange={ event => setCharacterName(event.target.value) }
+                  value={ form.characterName }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      characterName: event.target.value
+                    });
+                  }}
                 />
               </Form.Group>
             </Col>
@@ -71,8 +90,13 @@ function CharacterForm() {
                 <Form.Label>Player Name</Form.Label>
                 <Form.Control
                   type="text"
-                  value={ playerName }
-                  onChange={ event => setPlayerName(event.target.value) }
+                  value={ form.playerName }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      playerName: event.target.value
+                    });
+                  }}
                 />
               </Form.Group>
             </Col>
@@ -83,8 +107,13 @@ function CharacterForm() {
               <Form.Group className="mb-3" controlId="race">
                 <Form.Label>Race</Form.Label>
                 <Form.Select
-                  value={ race }
-                  onChange={ event => setRace(event.target.value) }
+                  value={ form.race }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      race: event.target.value
+                    });
+                  }}
                 >
                   <option key={`race-race`}>None</option>
                   {formData.races.map((race, idx) => (<option key={`race-${idx}`}>{race}</option>))}                  
@@ -96,8 +125,13 @@ function CharacterForm() {
               <Form.Group className="mb-3" controlId="gender">
                 <Form.Label>Gender</Form.Label>
                 <Form.Select
-                  value={ gender }
-                  onChange={ event => setGender(event.target.value) }
+                  value={ form.gender }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      gender: event.target.value
+                    });
+                  }}
                 >
                   <option key={`race-gender`}>None</option>
                   {formData.genders.map((gender, idx) => (<option key={`gender-${idx}`}>{gender}</option>))}                  
@@ -111,8 +145,13 @@ function CharacterForm() {
               <Form.Group className="mb-3" controlId="charClass">
                 <Form.Label>Class</Form.Label>
                 <Form.Select
-                  value={ charClass }
-                  onChange={ event => setCharClass(event.target.value) }
+                  value={ form.charClass }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      charClass: event.target.value
+                    });
+                  }}
                 >
                   <option key={`race-charClass`}>None</option>
                   {formData.charClasses.map((charClass, idx) => (<option key={`charClass-${idx}`}>{charClass}</option>))}                  
@@ -124,8 +163,13 @@ function CharacterForm() {
               <Form.Group className="mb-3" controlId="level">
                 <Form.Label>Level</Form.Label>
                 <Form.Select
-                  value={ level }
-                  onChange={ event => setLevel(strToNum(event.target.value)) }
+                  value={ form.level }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      level: strToNum(event.target.value)
+                    });
+                  }}
                 >
                   { [...Array(formData.maxLevel)].map((val, idx) => (
                       <option key={"lvl-" + (idx + 1)}>{idx + 1}</option>
@@ -141,8 +185,13 @@ function CharacterForm() {
               <Form.Group className="mb-3" controlId="background">
                 <Form.Label>Background</Form.Label>
                 <Form.Select
-                  value={ background }
-                  onChange={ event => setBackground(event.target.value) }
+                  value={ form.background }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      background: event.target.value
+                    });
+                  }}
                 >
                   <option key={`background-default`}>None</option>
                   {formData.backgrounds.map((background, idx) => (<option key={`background-${idx}`}>{background}</option>))}                  
@@ -154,8 +203,13 @@ function CharacterForm() {
               <Form.Group className="mb-3" controlId="alignment">
                 <Form.Label>Alignment</Form.Label>
                 <Form.Select
-                  value={ alignment }
-                  onChange={ event => setAlignment(event.target.value) }
+                  value={ form.alignment }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      alignment: event.target.value
+                    });
+                  }}
                 >
                   <option key={`alignment-default`}>None</option>
                   {formData.alignments.map((alignment, idx) => (<option key={`alignment-${idx}`}>{alignment}</option>))}                  
@@ -172,8 +226,13 @@ function CharacterForm() {
                 <Form.Label>Current Hit Points</Form.Label>
                 <Form.Control
                   type="number"
-                  value={ currentHitPoints }
-                  onChange={ event => setCurrentHitPoints(strToNum(event.target.value)) }
+                  value={ form.currentHitPoints }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      currentHitPoints: strToNum(event.target.value)
+                    });
+                  }}
                 />
               </Form.Group>
             </Col>
@@ -183,8 +242,13 @@ function CharacterForm() {
                 <Form.Label>Max Hit Points</Form.Label>
                 <Form.Control
                   type="number"
-                  value={ maxHitPoints }
-                  onChange={ event => setMaxHitPoints(strToNum(event.target.value)) }
+                  value={ form.maxHitPoints }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      maxHitPoints: strToNum(event.target.value)
+                    });
+                  }}
                 />
               </Form.Group>
             </Col>
@@ -194,8 +258,13 @@ function CharacterForm() {
                 <Form.Label>Armor Class</Form.Label>
                 <Form.Control
                   type="number"
-                  value={ armorClass }
-                  onChange={ event => setArmorClass(strToNum(event.target.value)) }
+                  value={ form.armorClass }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      armorClass: strToNum(event.target.value)
+                    });
+                  }}
                 />
               </Form.Group>
             </Col>
@@ -205,8 +274,13 @@ function CharacterForm() {
                 <Form.Label>Initiative</Form.Label>
                 <Form.Control
                   type="number"
-                  value={ initiative }
-                  onChange={ event => setInitiative(strToNum(event.target.value)) }
+                  value={ form.initiative }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      initiative: strToNum(event.target.value)
+                    });
+                  }}
                 />
               </Form.Group>
             </Col>
@@ -216,8 +290,13 @@ function CharacterForm() {
                 <Form.Label>Speed</Form.Label>
                 <Form.Control
                   type="number"
-                  value={ speed }
-                  onChange={ event => setSpeed(strToNum(event.target.value)) }
+                  value={ form.speed }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      speed: strToNum(event.target.value)
+                    });
+                  }}
                 />
               </Form.Group>
             </Col>
@@ -229,8 +308,13 @@ function CharacterForm() {
                 <Form.Label>Strength</Form.Label>
                 <Form.Control
                   type="number"
-                  value={ strength }
-                  onChange={ event => setStrength(strToNum(event.target.value)) }
+                  value={ form.strength }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      strength: strToNum(event.target.value)
+                    });
+                  }}
                 />
               </Form.Group>
             </Col>
@@ -240,8 +324,13 @@ function CharacterForm() {
                 <Form.Label>Dexterity</Form.Label>
                 <Form.Control
                   type="number"
-                  value={ dexterity }
-                  onChange={ event => setDexterity(strToNum(event.target.value)) }
+                  value={ form.dexterity }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      dexterity: strToNum(event.target.value)
+                    });
+                  }}
                 />
               </Form.Group>
             </Col>
@@ -251,8 +340,13 @@ function CharacterForm() {
                 <Form.Label>Constitution</Form.Label>
                 <Form.Control
                   type="number"
-                  value={ constitution }
-                  onChange={ event => setConstitution(strToNum(event.target.value)) }
+                  value={ form.constitution }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      constitution: strToNum(event.target.value)
+                    });
+                  }}
                 />
               </Form.Group>
             </Col>
@@ -262,8 +356,13 @@ function CharacterForm() {
                 <Form.Label>Intelligence</Form.Label>
                 <Form.Control
                   type="number"
-                  value={ intelligence }
-                  onChange={ event => setIntelligence(strToNum(event.target.value)) }
+                  value={ form.intelligence }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      intelligence: strToNum(event.target.value)
+                    });
+                  }}
                 />
               </Form.Group>
             </Col>
@@ -273,8 +372,13 @@ function CharacterForm() {
                 <Form.Label>Wisdom</Form.Label>
                 <Form.Control
                   type="number"
-                  value={ wisdom }
-                  onChange={ event => setWisdom(strToNum(event.target.value)) }
+                  value={ form.wisdom }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      wisdom: strToNum(event.target.value)
+                    });
+                  }}
                 />
               </Form.Group>
             </Col>
@@ -284,8 +388,13 @@ function CharacterForm() {
                 <Form.Label>Charisma</Form.Label>
                 <Form.Control
                   type="number"
-                  value={ charisma }
-                  onChange={ event => setCharisma(strToNum(event.target.value)) }
+                  value={ form.charisma }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      charisma: strToNum(event.target.value)
+                    });
+                  }}
                 />
               </Form.Group>
             </Col>
@@ -296,8 +405,13 @@ function CharacterForm() {
               <Form.Group className="mb-3" controlId="attacksSpellcasting">
                 <Form.Label>Attacks & Spellcasting</Form.Label>
                 <Form.Control as="textarea" rows={5}
-                  value={ attacksSpellcasting }
-                  onChange={ event => setAttacksSpellcasting(event.target.value) }
+                  value={ form.attacksSpellcasting }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      attacksSpellcasting: event.target.value
+                    });
+                  }}
                 />
               </Form.Group>
             </Col>
@@ -306,8 +420,13 @@ function CharacterForm() {
               <Form.Group className="mb-3" controlId="equipment">
                 <Form.Label>Equipment</Form.Label>
                 <Form.Control as="textarea" rows={5}
-                  value={ equipment }
-                  onChange={ event => setEquipment(event.target.value) }
+                  value={ form.equipment }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      equipment: event.target.value
+                    });
+                  }}
                 />
               </Form.Group>
             </Col>
@@ -318,8 +437,13 @@ function CharacterForm() {
               <Form.Group className="mb-3" controlId="savingThrows">
                 <Form.Label>Saving Throws</Form.Label>
                 <Form.Control as="textarea" rows={5}
-                  value={ savingThrows }
-                  onChange={ event => setSavingThrows(event.target.value) }
+                  value={ form.savingThrows }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      savingThrows: event.target.value
+                    });
+                  }}
                 />
               </Form.Group>
             </Col>
@@ -328,8 +452,13 @@ function CharacterForm() {
               <Form.Group className="mb-3" controlId="skills">
                 <Form.Label>Skills</Form.Label>
                 <Form.Control as="textarea" rows={5}
-                  value={ skills }
-                  onChange={ event => setSkills(event.target.value) }
+                  value={ form.skills }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      skills: event.target.value
+                    });
+                  }}
                 />
               </Form.Group>
             </Col>
@@ -342,8 +471,13 @@ function CharacterForm() {
               <Form.Group className="mb-3" controlId="personalityTraits">
                 <Form.Label>Personality Traits</Form.Label>
                 <Form.Control type="text"
-                  value={ personalityTraits }
-                  onChange={ event => setPersonalityTraits(event.target.value) }
+                  value={ form.personalityTraits }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      personalityTraits: event.target.value
+                    });
+                  }}
                 />
               </Form.Group>
             </Col>
@@ -352,8 +486,13 @@ function CharacterForm() {
               <Form.Group className="mb-3" controlId="ideals">
                 <Form.Label>Ideals</Form.Label>
                 <Form.Control type="text"
-                  value={ ideals }
-                  onChange={ event => setIdeals(event.target.value) }
+                  value={ form.ideals }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      ideals: event.target.value
+                    });
+                  }}
                 />
               </Form.Group>
             </Col>
@@ -364,8 +503,13 @@ function CharacterForm() {
               <Form.Group className="mb-3" controlId="bonds">
                 <Form.Label>Bonds</Form.Label>
                 <Form.Control type="text"
-                  value={ bonds }
-                  onChange={ event => setBonds(event.target.value) }
+                  value={ form.bonds }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      bonds: event.target.value
+                    });
+                  }}
                 />
               </Form.Group>
             </Col>
@@ -374,8 +518,13 @@ function CharacterForm() {
               <Form.Group className="mb-3" controlId="flaws">
                 <Form.Label>Flaws</Form.Label>
                 <Form.Control type="text"
-                  value={ flaws }
-                  onChange={ event => setFlaws(event.target.value) }
+                  value={ form.flaws }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      flaws: event.target.value
+                    });
+                  }}
                 />
               </Form.Group>
             </Col>
@@ -386,8 +535,13 @@ function CharacterForm() {
               <Form.Group className="mb-3" controlId="biography">
                 <Form.Label>Biography</Form.Label>
                 <Form.Control as="textarea" rows={5}
-                  value={ biography }
-                  onChange={ event => setBiography(event.target.value) }
+                  value={ form.biography }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      biography: event.target.value
+                    });
+                  }}
                 />
               </Form.Group>
             </Col>
@@ -400,8 +554,13 @@ function CharacterForm() {
               <Form.Group className="mb-3" controlId="other">
                 <Form.Label>Other</Form.Label>
                 <Form.Control as="textarea" rows={5}
-                  value={ other }
-                  onChange={ event => setOther(event.target.value) }
+                  value={ form.other }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      other: event.target.value
+                    });
+                  }}
                 />
               </Form.Group>
             </Col>
