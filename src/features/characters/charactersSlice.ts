@@ -58,8 +58,17 @@ export const charactersSlice = createSlice({
     },
     deleteCharacter: (state, action: PayloadAction<number>) => {
       const id = action.payload;
-      state.savedCharacters.splice(id, 1);
-      state.currentCharacterId = initialState.currentCharacterId;
+      if (id >= 0 && id < state.savedCharacters.length) {
+        state.savedCharacters.splice(id, 1);
+        state.currentCharacterId = initialState.currentCharacterId;
+      }      
+    },
+    deleteCurrentCharacter: (state) => {
+      const id = state.currentCharacterId;
+      if (id >= 0 && id < state.savedCharacters.length) {
+        state.savedCharacters.splice(id, 1);
+        state.currentCharacterId = initialState.currentCharacterId;
+      }
     },
     resetCharacters: (state) => {
       state = initialState;
@@ -78,6 +87,7 @@ export const {
   createCharacter,
   updateCharacter,
   deleteCharacter,
+  deleteCurrentCharacter,
   resetCharacters,
   setCurrentCharacterId,
   setNewCurrentCharacterId

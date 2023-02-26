@@ -9,7 +9,7 @@ import { NEW_CHAR_ID } from '../../app/helpers';
 import {
   createCharacter,
   updateCharacter,
-  deleteCharacter,
+  deleteCurrentCharacter,
   selectCurrentCharacter,
   selectCurrentCharacterId
 } from '../../features/characters/charactersSlice';
@@ -75,6 +75,12 @@ function CharacterForm() {
       // Update existing character
       dispatch(updateCharacter(form));
     }    
+  }
+
+  const handleDelete = () => {
+    if (currentCharacterId !== NEW_CHAR_ID) {
+      dispatch(deleteCurrentCharacter());
+    }
   }
 
   return (
@@ -584,6 +590,12 @@ function CharacterForm() {
                 <Button variant="primary" type="submit">
                   Submit
                 </Button>
+                {
+                  currentCharacterId !== NEW_CHAR_ID &&
+                  <Button variant="primary" onClick={handleDelete}>
+                    Delete
+                  </Button>
+                }
               </div>
             </Col>
           </Row>
