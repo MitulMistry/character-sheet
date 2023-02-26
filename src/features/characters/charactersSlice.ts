@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
+import { NEW_CHAR_ID } from '../../app/helpers';
 
 export interface Character {
   characterName: string;
@@ -39,7 +40,7 @@ export interface CharactersState {
 }
 
 const initialState: CharactersState = {
-  currentCharacterId: 0,
+  currentCharacterId: NEW_CHAR_ID,
   savedCharacters: []
 }
 
@@ -62,6 +63,12 @@ export const charactersSlice = createSlice({
     },
     resetCharacters: (state) => {
       state = initialState;
+    },
+    setCurrentCharacterId: (state, action: PayloadAction<number>) => {
+      state.currentCharacterId = action.payload;
+    },
+    setNewCurrentCharacterId: (state) => {
+      state.currentCharacterId = NEW_CHAR_ID;
     }
   }
 });
@@ -71,14 +78,23 @@ export const {
   createCharacter,
   updateCharacter,
   deleteCharacter,
-  resetCharacters
+  resetCharacters,
+  setCurrentCharacterId,
+  setNewCurrentCharacterId
 } = charactersSlice.actions;
 
 // Selectors
 export const selectCurrentCharacter = (state: RootState) => {
   const id = state.characters.currentCharacterId;
-  return state.characters.savedCharacters[id];
+  return (id >= 0) ? state.characters.savedCharacters[id] : null;
 };
-export const selectCharacter = (state: RootState, id: number) => state.characters.savedCharacters[id];
+
+export const selectCurrentCharacterId = (state: RootState) => {
+  return state.characters.currentCharacterId;
+};
+
+export const selectCharacter = (state: RootState, id: number) => {
+  return state.characters.savedCharacters[id];
+}
 
 export default charactersSlice.reducer;

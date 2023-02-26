@@ -4,11 +4,14 @@ import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { loadCharFormData, selectCharFormData } from './characterFormSlice';
 import { rulesets } from '../../data/constants';
 import { strToNum } from '../../app/helpers';
+import { NEW_CHAR_ID } from '../../app/helpers';
 
 import {
   createCharacter,
   updateCharacter,
-  deleteCharacter
+  deleteCharacter,
+  selectCurrentCharacter,
+  selectCurrentCharacterId
 } from '../../features/characters/charactersSlice';
 
 import Container from 'react-bootstrap/Container';
@@ -22,6 +25,8 @@ import './CharacterForm.css';
 function CharacterForm() {
   const formData = useAppSelector(selectCharFormData);
   const dispatch = useAppDispatch();
+
+  const currentCharacterId = useAppSelector(selectCurrentCharacterId);
 
   // With an empty array as argument, will dispatch to Redux store
   // only once upon component loading.
@@ -59,15 +64,22 @@ function CharacterForm() {
     other: ''
   });
 
-  // const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
-  //   event.preventDefault();
-  //   const character = Object.assign({}, state);
-  //   dispatch(createCharacter());
-  // }
+  const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    // Create new character
+    if (currentCharacterId === NEW_CHAR_ID) {
+      dispatch(createCharacter(form));
+
+    } else {
+      // Update existing character
+      dispatch(updateCharacter(form));
+    }    
+  }
 
   return (
     <Container>
-      <Form className="characterForm">
+      <Form className="characterForm" onSubmit={ handleSubmit }>
           <Row>
             <Col xs={12} md={6}>
               <Form.Group className="mb-3" controlId="characterName">
