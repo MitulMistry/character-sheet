@@ -5,7 +5,8 @@ import { Routes, Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import Layout from './components/Layout/Layout';
 import Home from './components/Home/Home';
-import CharacterForm from './components/CharacterForm/CharacterForm';
+import CharacterNew from './components/CharacterNew/CharacterNew';
+import CharacterEdit from './components/CharacterEdit/CharacterEdit';
 import LoadCharacters from './components/LoadCharacters/LoadCharacters';
 import './App.css';
 
@@ -15,8 +16,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="new" element={<CharacterForm />} />
-          <Route path="edit" element={<CharacterForm />} />
+          <Route path="new" element={<CharacterNew />} />
+          <Route path="edit/:id" element={<CharacterEdit />} />
           <Route path="load" element={<LoadCharacters />} />
         </Route>
       </Routes>
