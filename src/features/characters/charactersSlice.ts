@@ -104,7 +104,15 @@ export const selectCurrentCharacterId = (state: RootState) => {
 };
 
 export const selectCharacter = (state: RootState, id: number) => {
-  return state.characters.savedCharacters[id];
+  if (id >= 0 && id < state.characters.savedCharacters.length) {
+    return state.characters.savedCharacters[id];
+  } else {
+    return null;
+  }
+}
+
+export const selectCharacters = (state: RootState) => {
+  return state.characters.savedCharacters;
 }
 
 export default charactersSlice.reducer;

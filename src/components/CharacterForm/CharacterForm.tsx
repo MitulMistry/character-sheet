@@ -27,6 +27,7 @@ function CharacterForm() {
   const dispatch = useAppDispatch();
 
   const currentCharacterId = useAppSelector(selectCurrentCharacterId);
+  const currentCharacterData = useAppSelector(selectCurrentCharacter);
 
   // With an empty array as argument, will dispatch to Redux store
   // only once upon component loading.
@@ -63,6 +64,13 @@ function CharacterForm() {
     biography: '',
     other: ''
   });
+
+  // Load character data into form if this is a previously created character
+  useEffect(() => {
+    if (currentCharacterData !== null) {
+      setForm({...currentCharacterData});
+    }
+  }, []);
 
   const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
