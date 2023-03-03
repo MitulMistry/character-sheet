@@ -32,10 +32,12 @@ function CharacterCard(props: CharacterInfo) {
       <Card.Text>Gender: {props.gender || 'None'}</Card.Text>
       <Card.Text>Class: {props.charClass || 'None'}</Card.Text>
       <Card.Text>Level: {props.level || '1'}</Card.Text>
-      <LinkContainer to={"/edit/" + props.id}>
-        <Button variant="primary" onClick={handleEdit}>Edit</Button>
-      </LinkContainer>
-      <Button variant="primary" onClick={handleDelete}>Delete</Button>      
+      <div className="buttons">
+        <LinkContainer to={"/edit/" + props.id}>
+          <Button variant="primary" onClick={handleEdit}>Edit</Button>
+        </LinkContainer>
+        <Button variant="primary" onClick={handleDelete}>Delete</Button>
+      </div>
     </Card.Body>
   </Card>
   );

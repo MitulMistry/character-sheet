@@ -3,15 +3,15 @@ import { selectCharacters } from '../../features/characters/charactersSlice';
 import { useAppSelector } from '../../app/hooks';
 import CharacterCard from './CharacterCard';
 import { Link } from 'react-router-dom';
+import './LoadCharacters.css';
 
 function LoadCharacters() {
   const characters = useAppSelector(selectCharacters);
   
   return (
-    <div>
-      <p>Load Characters</p>
+    <div className="load-characters">
       {characters.length === 0 && 
-        <div>
+        <div className="no-characters">
           <p>You have not created any characters yet. Once you do, they will show up here.</p>
           <p>Create a new character <Link to="/new">here</Link>.</p>
         </div>

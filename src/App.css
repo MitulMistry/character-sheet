@@ -1,3 +1,20 @@
+.btn-primary {
+  --bs-btn-color: #212529;
+  --bs-btn-bg: #fff;
+  --bs-btn-border-color: #212529;
+  --bs-btn-hover-color: #212529;
+  --bs-btn-hover-bg: #f2f1f1;
+  --bs-btn-hover-border-color: #212529;
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: #212529;
+  --bs-btn-active-bg: #b9b9b9;
+  --bs-btn-active-border-color: #212529;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #81858a;
+  --bs-btn-disabled-bg: #fff;
+  --bs-btn-disabled-border-color: #81858a;
+}
+
 /* .App {
   text-align: center;
 }

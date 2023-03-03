@@ -7,7 +7,7 @@ import './Home.css';
 
 function Home() {
   return (
-    <div className="home p-5 mb-4 bg-light rounded-3">    
+    <div className="home p-5 mb-4 rounded-3">    
       <Container fluid="md">
         <h1>Character Sheet</h1>
         <p>Create character sheets for your table top RPGs.</p>
