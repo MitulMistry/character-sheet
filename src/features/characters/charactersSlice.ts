@@ -115,4 +115,8 @@ export const selectCharacters = (state: RootState) => {
   return state.characters.savedCharacters;
 }
 
+export const selectCharactersCount = (state: RootState) => {
+  return state.characters.savedCharacters.length;
+}
+
 export default charactersSlice.reducer;

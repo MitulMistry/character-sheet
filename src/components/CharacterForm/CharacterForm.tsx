@@ -5,13 +5,15 @@ import { loadCharFormData, selectCharFormData } from './characterFormSlice';
 import { rulesets } from '../../data/constants';
 import { strToNum } from '../../app/helpers';
 import { NEW_CHAR_ID } from '../../app/helpers';
+import { useNavigate } from 'react-router-dom';
 
 import {
   createCharacter,
   updateCharacter,
   deleteCurrentCharacter,
   selectCurrentCharacter,
-  selectCurrentCharacterId
+  selectCurrentCharacterId,
+  selectCharactersCount
 } from '../../features/characters/charactersSlice';
 
 import Container from 'react-bootstrap/Container';
@@ -25,15 +27,17 @@ import './CharacterForm.css';
 function CharacterForm() {
   const formData = useAppSelector(selectCharFormData);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const currentCharacterId = useAppSelector(selectCurrentCharacterId);
   const currentCharacterData = useAppSelector(selectCurrentCharacter);
+  const savedCharactersCount = useAppSelector(selectCharactersCount);
 
   // With an empty array as argument, will dispatch to Redux store
   // only once upon component loading.
   useEffect(() => { dispatch(loadCharFormData(rulesets.dnd5)) }, []);
 
-  const [form, setForm] = useState({
+  const formDefault = {
     characterName: '',
     playerName: '',
     race: 'None',
@@ -63,14 +67,20 @@ function CharacterForm() {
     flaws: '',
     biography: '',
     other: ''
+  };
+
+  const [form, setForm] = useState({
+    ...formDefault
   });
 
   // Load character data into form if this is a previously created character
   useEffect(() => {
-    if (currentCharacterData !== null) {
+    if (currentCharacterId !== NEW_CHAR_ID && currentCharacterData !== null) {
       setForm({...currentCharacterData});
+    } else {
+      setForm({...formDefault});
     }
-  }, []);
+  }, [currentCharacterId]);
 
   const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -78,6 +88,7 @@ function CharacterForm() {
     // Create new character
     if (currentCharacterId === NEW_CHAR_ID) {
       dispatch(createCharacter(form));
+      navigate('/edit/' + savedCharactersCount);
 
     } else {
       // Update existing character
