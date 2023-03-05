@@ -1,3 +1,8 @@
+.app {
+  flex: 1 0 auto;
+  padding: 10px;
+}
+
 .btn-primary {
   --bs-btn-color: #212529;
   --bs-btn-bg: #fff;
@@ -13,6 +18,18 @@
   --bs-btn-disabled-color: #81858a;
   --bs-btn-disabled-bg: #fff;
   --bs-btn-disabled-border-color: #81858a;
+}
+
+a {
+  color: #212529;
+  transition: color 0.1s linear;
+  -o-transition: color 0.1s linear;
+  -moz-transition: color 0.1s linear;
+  -webkit-transition: color 0.1s linear;
+}
+
+a:hover {
+  color: #71767c;
 }
 
 /* .App {

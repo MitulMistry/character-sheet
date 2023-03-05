@@ -605,7 +605,7 @@ function CharacterForm() {
 
           <Row>
             <Col xs={12}>
-              <div className="formButton">
+              <div className="formButtons">
                 <Button variant="primary" type="submit">
                   Submit
                 </Button>

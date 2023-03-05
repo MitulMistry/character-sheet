@@ -12,7 +12,7 @@ import './App.css';
 
 function App() {
   return (
-    <Container className="App">
+    <Container className="app">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />

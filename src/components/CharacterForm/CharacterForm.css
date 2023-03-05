@@ -1,8 +1,13 @@
 .characterForm {
   margin-top:2rem;
+  margin-bottom: 2rem;
   max-width: 800px;
 }
 
-.formButton {
+.formButtons {
   text-align: right;
+}
+
+.formButtons button {
+  margin-left: 1rem;
 }

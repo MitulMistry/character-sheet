@@ -6,6 +6,7 @@ import { subscribeStoreToLocal } from './app/store';
 import { BrowserRouter as Router } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import App from './App';
+import Footer from './components/Footer/Footer';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 
@@ -16,11 +17,14 @@ subscribeStoreToLocal(store);
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 
+// Set up sticky footer with Flexbox by rendering an array.
+const content = [<App key="content1" />, <Footer key="content2" />]
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
-        <App />
+        {content}
       </Router>
     </Provider>
   </React.StrictMode>

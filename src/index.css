@@ -1,8 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap');
 
+/* body, #root, .app, and .footer configured to use Flexbox to implement sticky footer */
+/* Using: https://medium.com/@stefanmaretic/react-sticky-footer-f842d5fbd68 */
+/* https://codesandbox.io/s/l2v2k0q7rq?from-embed=&file=/src/index.js */
+
+html,
+body {
+  height: 100%;
+}
 
 body {
   font-family: 'Libre Baskerville', serif;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 /* body {
