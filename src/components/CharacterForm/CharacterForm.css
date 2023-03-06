@@ -11,3 +11,15 @@
 .formButtons button {
   margin-left: 1rem;
 }
+
+.form-control {
+  border-color: #b9c2ca;
+}
+
+.form-select {
+  border-color: #b9c2ca;
+}
+
+hr {
+  opacity: .30;
+}
