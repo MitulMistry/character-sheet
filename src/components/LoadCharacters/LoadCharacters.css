@@ -6,15 +6,7 @@
   margin-top: 3rem;
 }
 
-.card-title {
-  margin-bottom: 1.5rem;
-}
-
-.buttons {
-  margin-top: 1.5rem;
-}
-
-.buttons a {
+.load-buttons button {
   margin-right: 1rem;
 }
 

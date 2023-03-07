@@ -32,7 +32,7 @@ function CharacterCard(props: CharacterInfo) {
       <Card.Text>Gender: {props.gender || 'None'}</Card.Text>
       <Card.Text>Class: {props.charClass || 'None'}</Card.Text>
       <Card.Text>Level: {props.level || '1'}</Card.Text>
-      <div className="buttons">
+      <div className="card-buttons">
         <LinkContainer to={"/edit/" + props.id}>
           <Button variant="primary" onClick={handleEdit}>Edit</Button>
         </LinkContainer>

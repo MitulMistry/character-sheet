@@ -1,10 +1,11 @@
 import React from 'react';
 import { selectCharacters } from '../../features/characters/charactersSlice';
-import { useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Masonry from 'react-masonry-css';
 import CharacterCard from './CharacterCard';
-import { Character } from '../../features/characters/charactersSlice';
+import { Character, resetCharacters, loadSampleCharacters, selectSampleCharsLoaded } from '../../features/characters/charactersSlice';
 import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import './LoadCharacters.css';
 
 function LoadCharacters() {
@@ -14,6 +15,12 @@ function LoadCharacters() {
     1199: 2,
     767: 1
   };
+
+  const sampleCharsLoaded = useAppSelector(selectSampleCharsLoaded);
+
+  const dispatch = useAppDispatch();
+  const handleLoadSampleChars = () => dispatch(loadSampleCharacters());
+  const handleResetChars = () => dispatch(resetCharacters());
 
   return (
     <div className="load-characters">
@@ -40,6 +47,14 @@ function LoadCharacters() {
           />
         ))}
       </Masonry>
+      <div className="load-buttons">
+        {characters.length > 0 &&
+          <Button variant="primary" onClick={handleResetChars}>Reset Characters</Button>
+        }
+        {!sampleCharsLoaded &&
+          <Button variant="primary" onClick={handleLoadSampleChars}>Load Sample Characters</Button>
+        }
+      </div>
     </div>
   );
 }
