@@ -1,50 +1,34 @@
-# Getting Started with Create React App
+# Character Sheet
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+### A simple [React](https://reactjs.org/) front end application using [Redux Toolkit](https://redux-toolkit.js.org/) for state management. Users can create character sheets for their tabletop RPGs and update them as their games progress.
 
-## Available Scripts
+## Demo App
+You can see a demo version of this application deployed to [Cyclic](https://app.cyclic.sh) here: https://react-character-sheet.cyclic.app
 
-In the project directory, you can run:
+## Application Info
+This project is written in [TypeScript](https://www.typescriptlang.org/) and configured with [Node Package Manager](https://www.npmjs.com/). It was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TypeScript [template](https://github.com/reduxjs/cra-template-redux-typescript).
 
-### `npm run dev`
+It uses [Bootstrap](https://getbootstrap.com/) via the [React-Bootrap](https://react-bootstrap.github.io/) package for front end styling and structure. It uses [Jest](https://jestjs.io/) for front end testing. It also uses [Node Express](https://expressjs.com/) to serve the build in production.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Character sheets will be saved to local storage in the user's browser and will be loaded once returning to the application. Clearing the browser's cache will delete all saved data.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Commands
+`npm run dev` - Run the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### `npm test`
+`npm run build` - Build the app for production to the `build` folder (using [Webpack](https://webpack.js.org/)). It correctly bundles React in production mode and optimizes the build for the best performance.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`npm start` - Run the Express server via Node and serve the production build.
 
-### `npm run build`
+`npm test` - Launches the test runner in the interactive watch mode.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+`npm run eject` - Remove the single build dependency from the project. Once executed, there is no going back.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Install Instructions
+Node Package Manager (NPM) is used for dependencies. To install the application locally, follow these instructions:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Install [Node.js](https://nodejs.org/). NPM comes packaged with it.
+2. Run `npm install` in the command line while in the project directory. It will install dependencies from the [package.json file](../main/package.json).
+3. To build for development and run the local dev server at http://localhost:3000, run `npm run dev`.
 
-### `npm start`
-
-Run the Node server and serve files for production.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
+This project is open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
