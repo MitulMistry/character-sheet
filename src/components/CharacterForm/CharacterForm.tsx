@@ -48,6 +48,7 @@ function CharacterForm() {
     alignment: 'None',
     currentHitPoints: 0,
     maxHitPoints: 0,
+    experiencePoints: 0,
     armorClass: 0,
     initiative: 0,
     speed: 0,
@@ -258,7 +259,7 @@ function CharacterForm() {
           <hr />
 
           <Row>
-            <Col xs={6} md={3}>
+            <Col xs={6} md={2}>
               <Form.Group className="mb-3" controlId="currentHitPoints">
                 <Form.Label>Current Hit Points</Form.Label>
                 <Form.Control
@@ -274,7 +275,7 @@ function CharacterForm() {
               </Form.Group>
             </Col>
 
-            <Col xs={6} md={3}>
+            <Col xs={6} md={2}>
               <Form.Group className="mb-3" controlId="maxHitPoints">
                 <Form.Label>Max Hit Points</Form.Label>
                 <Form.Control
@@ -284,6 +285,22 @@ function CharacterForm() {
                     setForm({
                       ...form,
                       maxHitPoints: strToNum(event.target.value)
+                    });
+                  }}
+                />
+              </Form.Group>
+            </Col>
+
+            <Col xs={6} md={2}>
+              <Form.Group className="mb-3" controlId="experiencePoints">
+                <Form.Label>Experience Points</Form.Label>
+                <Form.Control
+                  type="number"
+                  value={ form.experiencePoints }
+                  onChange={ event => {
+                    setForm({
+                      ...form,
+                      experiencePoints: strToNum(event.target.value)
                     });
                   }}
                 />

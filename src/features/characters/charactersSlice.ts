@@ -14,6 +14,7 @@ export interface Character {
   alignment: string;
   currentHitPoints: number;
   maxHitPoints: number;
+  experiencePoints: number;
   armorClass: number;
   initiative: number;
   speed: number;
