@@ -1,13 +1,13 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { store } from './app/store';
-import App from './App';
+import { store } from '../../app/store';
+import NavBar from './NavBar';
 
 test('renders brand link', () => {
   render(
     <Provider store={store}>
-      <App />
+      <NavBar />
     </Provider>
   );
 
