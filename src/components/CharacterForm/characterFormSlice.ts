@@ -29,8 +29,8 @@ export const characterFormSlice = createSlice({
   name: 'characterForm',
   initialState,
   reducers: {
-    resetCharFormData: (state) => {
-      state = initialState;
+    resetCharFormData: () => {
+      return initialState;
     },
     loadCharFormData: (state, action: PayloadAction<string>) => {
       switch (action.payload) {
