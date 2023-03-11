@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from '../../app/store';
 import NavBar from './NavBar';
@@ -7,7 +8,9 @@ import NavBar from './NavBar';
 test('renders brand link', () => {
   render(
     <Provider store={store}>
-      <NavBar />
+      <Router>
+        <NavBar />
+      </Router>
     </Provider>
   );
 

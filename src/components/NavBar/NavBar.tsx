@@ -7,7 +7,7 @@ import './NavBar.css';
 
 function NavBar() {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar role="navbar" bg="light" expand="lg">
       <Container>
         <LinkContainer to="/">
           <Navbar.Brand>Character Sheet</Navbar.Brand>

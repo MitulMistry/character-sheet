@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import App from './App';
@@ -7,9 +8,13 @@ import App from './App';
 test('renders brand link', () => {
   render(
     <Provider store={store}>
-      <App />
+      <Router>
+        <App />
+      </Router>
     </Provider>
   );
 
-  expect(screen.getByText(/character sheet/i)).toBeInTheDocument();
+  const navBar = screen.getByRole('navbar');
+
+  expect(within(navBar).getByText(/character sheet/i)).toBeInTheDocument();
 });
