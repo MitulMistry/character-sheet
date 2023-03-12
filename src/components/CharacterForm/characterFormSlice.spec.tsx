@@ -18,7 +18,7 @@ describe('character form reducer', () => {
     }
   };
 
-  const sampleState: CharacterFormState = {
+  const testState: CharacterFormState = {
     data: {
       races: ['Human', 'Elf'],
       genders: ['Male', 'Female', 'Other'],
@@ -34,7 +34,7 @@ describe('character form reducer', () => {
   });
 
   it('should handle resetting character form data', () => {
-    const actual = characterFormReducer(sampleState, resetCharFormData());
+    const actual = characterFormReducer(testState, resetCharFormData());
     expect(actual).toEqual(initialState);
   });
 
