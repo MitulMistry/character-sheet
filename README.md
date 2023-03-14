@@ -1,4 +1,5 @@
 # Character Sheet
+![screenshot](readme_character_sheet.jpg)
 
 ### A simple [React](https://reactjs.org/) front end application using [Redux Toolkit](https://redux-toolkit.js.org/) for state management. Users can create character sheets for their tabletop RPGs and update them as their games progress.
 
